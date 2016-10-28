@@ -20,3 +20,5 @@ Dumping Stratasys uPrint (SE) (PLUS) EEPROMs and other DS2433 Chips from Stratas
       |                            |
    ------------              ------------
    OneWire Data              OneWire GND
+
+4. Use https://github.com/bvanheu/stratasys for decrypting the content
