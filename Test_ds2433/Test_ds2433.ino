@@ -55,7 +55,7 @@ delay(1000);
 /*Read and Display EEPROM Values (Calls function below)*/
 read_eeprom();
 
-delay(20000); /*Pause nach dem auslesen bis erneut auf Chip gewartet wird
+delay(20000); /*Pause nach dem auslesen bis erneut auf Chip gewartet wird*/
 
 }
 
