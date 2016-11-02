@@ -1,1 +1,1 @@
-How2 dump EEPROMs using Windows CMD
+How2 dump and decrypt EEPROMs using Windows CMD
