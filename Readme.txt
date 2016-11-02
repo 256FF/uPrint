@@ -1,7 +1,7 @@
 Arduino tool for reading uPrint EEPROMs
 =======================================
 
-Dumping Stratasys uPrint (SE) (PLUS) EEPROMs and other DS2433 Chips from Stratasys Printers
+Dumping Stratasys uPrint (SE) (PLUS) EEPROMs and DS2433 Chips from Stratasys Printers
 
 1. Install the Arduino OneWire library from here:
    http://www.pjrc.com/teensy/td_libs_OneWire.html
@@ -21,4 +21,6 @@ Dumping Stratasys uPrint (SE) (PLUS) EEPROMs and other DS2433 Chips from Stratas
    ------------              ------------
    OneWire Data              OneWire GND
 
-4. Use https://github.com/bvanheu/stratasys for decrypting the content
+4. Use tool.py to dump the EEPROM - see folder pics
+
+5. Use https://github.com/bvanheu/stratasys for decrypting the content - see folder pics
