@@ -1,4 +1,9 @@
 #!/usr/bin/python
+# tool.py forked from @meawoppl
+# edited COM-Port for Windows
+# changed re-read to 2x
+# changed spleep time to 2s
+
 import argparse, subprocess, sys, os
 import serial, time, binascii, os
 
@@ -50,14 +55,14 @@ def dump2433():
     rom = readROM()
     print(binascii.hexlify(rom) + " (" + str(len(rom)) + ")")
 
-    # Read it 5x and make sure they all match
+    # Read it 2x and make sure they all match
     for reread in range(2): assert rom == readROM(), "Mismatched ROM read.  Aborting"
 
     # Read the flash
     flash = readFlash()
     print("Flash Read: %i bytes" % len(flash))
 
-    # Read it 5x and make sure they all match
+    # Read it 2x and make sure they all match
     for reread in range(2): assert flash == readFlash(), "Mismatched flash read.  Aborting"
 
     # Make a path to store the dumped data
