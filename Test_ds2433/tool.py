@@ -21,7 +21,8 @@ def readROM():
 def readFlash():
     sp.flushInput()
     sp.write("f")
-    return sp.read(512)
+    return sp.read(512)     # 512 for Dimension (DS2433); 128 for uPrint(SE)(+) / HP Clone
+    # return sp.read(128)   # 128 for uPrint(SE)(+) / HP Clone
 
 def pollForChip():
     sp.write("x")
@@ -86,7 +87,8 @@ def write2433(flash):
     assert currentRom == readROM(), "ROM's do not match!"
 
     #stupid check the flash size to 512
-    assert len(flash) == 512, "ROM size is not 512  ({0}".format(len(flash))
+    assert len(flash) == 512, "ROM size is not 512  ({0}".format(len(flash))    # 512 for Dimension (DS2433); 128 for uPrint(SE)(+) / HP Clone
+    # assert len(flash) == 128, "ROM size is not 128  ({0}".format(len(flash))  # 128 for uPrint(SE)(+) / HP Clone
 
     # Transmit the write command + the new flash
     sp.write("w")
@@ -134,9 +136,10 @@ def clearFlash():
     waitForChip()
     currentRom = readROM()
     print("Detected Chip with ROM: " + binascii.hexlify(currentRom))
-    write2433("\0" * 512)
+    write2433("\0" * 512)       # 512 for Dimension (DS2433); 128 for uPrint(SE)(+) / HP Clone
+    # write2433("\0" * 128)       # 128 for uPrint(SE)(+) / HP Clone
 
-# MY Arduion was not found, so I changed lline 147 to port COM13
+# MY Arduion was not found, so I changed line to port COM13
 # Start the serial port up.  NB this is *nix specific, so needs changing for windows users.
 # if "linux" in sys.platform:
 #    possibleSerialPorts = [d for d in os.listdir("/dev") if "ttyACM" in d]
@@ -144,11 +147,10 @@ def clearFlash():
 #    possibleSerialPorts = [d for d in os.listdir("/dev") if "tty.usbmodemfa131" in d]
 # else:
 #    possibleSerialPorts = ["COM13", "COM12"]
-
-
-
 # spAddy = os.path.join("/dev", possibleSerialPorts[0])
 # print( "Using serial port: " + spAddy)
+
+# MY Arduion was not found, so I changed line to port COM13
 sp = serial.Serial('COM13', baudrate=9600, timeout=3)
 sp.flushInput()
 
