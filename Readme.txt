@@ -1,4 +1,4 @@
-Arduino tool for reading uPrint EEPROMs
+Arduino tool for reading uPrint/ HP DesignJet 3D EEPROMs
 =======================================
 
 Dumping Stratasys uPrint (SE) (PLUS) EEPROMs and DS2433 Chips from Stratasys Printers
