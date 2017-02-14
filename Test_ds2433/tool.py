@@ -3,6 +3,7 @@
 # edited COM-Port for Windows
 # changed re-read to 2x
 # changed spleep time to 2s
+# for use with Dimension Chips (512 Byte) edit Lines 25/16 ; 91/92 and 140/141
 
 import argparse, subprocess, sys, os
 import serial, time, binascii, os
@@ -21,8 +22,8 @@ def readROM():
 def readFlash():
     sp.flushInput()
     sp.write("f")
-    return sp.read(512)     # 512 for Dimension (DS2433); 128 for uPrint(SE)(+) / HP Clone
-    # return sp.read(128)   # 128 for uPrint(SE)(+) / HP Clone
+    # return sp.read(512)     # 512 for Dimension (DS2433); 128 for uPrint(SE)(+) / HP Clone
+    return sp.read(128)   # 128 for uPrint(SE)(+) / HP Clone
 
 def pollForChip():
     sp.write("x")
@@ -87,8 +88,8 @@ def write2433(flash):
     assert currentRom == readROM(), "ROM's do not match!"
 
     #stupid check the flash size to 512
-    assert len(flash) == 512, "ROM size is not 512  ({0}".format(len(flash))    # 512 for Dimension (DS2433); 128 for uPrint(SE)(+) / HP Clone
-    # assert len(flash) == 128, "ROM size is not 128  ({0}".format(len(flash))  # 128 for uPrint(SE)(+) / HP Clone
+    # assert len(flash) == 512, "ROM size is not 512  ({0}".format(len(flash))    # 512 for Dimension (DS2433); 128 for uPrint(SE)(+) / HP Clone
+    assert len(flash) == 128, "ROM size is not 128  ({0}".format(len(flash))  # 128 for uPrint(SE)(+) / HP Clone
 
     # Transmit the write command + the new flash
     sp.write("w")
@@ -136,8 +137,8 @@ def clearFlash():
     waitForChip()
     currentRom = readROM()
     print("Detected Chip with ROM: " + binascii.hexlify(currentRom))
-    write2433("\0" * 512)       # 512 for Dimension (DS2433); 128 for uPrint(SE)(+) / HP Clone
-    # write2433("\0" * 128)       # 128 for uPrint(SE)(+) / HP Clone
+    # write2433("\0" * 512)       # 512 for Dimension (DS2433); 128 for uPrint(SE)(+) / HP Clone
+    write2433("\0" * 128)       # 128 for uPrint(SE)(+) / HP Clone
 
 # MY Arduion was not found, so I changed line to port COM13
 # Start the serial port up.  NB this is *nix specific, so needs changing for windows users.
